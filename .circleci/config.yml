@@ -14,7 +14,6 @@ jobs:
   build:
     docker:
       - image: cimg/ruby:2.3.0
-      https://github.com/hamsasuri/circleci-HS.git
     steps:
       - checkout
       - run: echo "this is the build job"
