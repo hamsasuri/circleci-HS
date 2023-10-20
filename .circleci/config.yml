@@ -1,23 +1,24 @@
+# CircleCI configuration file
 version: 2.1
-executors:
-  my-custom-executor:
-    docker:
-      - image: cimg/base:stable
-        auth:
-          # ensure you have first added these secrets
-          # visit app.circleci.com/settings/project/github/hamsasuri/circleci-HS/environment-variables
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PASSWORD
-jobs:
-  my-job-name:
 
-    executor: my-custom-executor
+jobs:
+  # Job one with a unique name
+  say_hello:
+    docker:
+     - image: cimg/base:2022.05
     steps:
-      - checkout
-      - run: |
-        echo Hello, World!
+      - run: echo "Say hello to YAML!"
+  # Job two with a unique name
+  say_goodbye:
+    docker:
+     - image: cimg/base:2022.05
+    steps:
+      - run: echo "Say goodbye to YAML!"
 
 workflows:
-  my-custom-workflow:
+  # Name of workflow
+  hello_and_goodbye:
+    # List of jobs that will run
     jobs:
-      - my-job-name
+      - say_hello
+      - say_goodbye
